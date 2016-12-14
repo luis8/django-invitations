@@ -30,7 +30,8 @@ class SendInvite(LoginRequiredMixin, FormView):
             invite.inviter = self.request.user
             invite.save()
             invite.send_invitation(self.request)
-        except Exception:
+        except Exception, e:
+            print e
             return self.form_invalid(form)
 
         return self.render_to_response(
